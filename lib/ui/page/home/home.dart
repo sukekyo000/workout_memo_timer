@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../global/drawer.dart';
-import '../timer/timer.dart';
-import '../workout_memo/workout_memo.dart';
+import 'timer/timer.dart';
+import 'workout_memo/workout_memo.dart';
 
 class HomePage extends HookWidget {
   const HomePage({super.key});

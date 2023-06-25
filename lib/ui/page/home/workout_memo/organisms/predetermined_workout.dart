@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/utilities/generate.dart';
-import '../../../../state/predetermined_workouts_certain_day_of_week/predetermined_workouts_certain_day_of_week.dart';
-import '../../../../state/workouts_certain_day/workouts_certain_day.dart';
-import '../../../global/card/predetermined_workout_menu_specific_day_of_week_card.dart';
-import '../../../global/dialog/dialog.dart';
+import '../../../../../domain/utilities/generate.dart';
+import '../../../../../state/predetermined_workouts_certain_day_of_week/predetermined_workouts_certain_day_of_week.dart';
+import '../../../../../state/workouts_certain_day/workouts_certain_day.dart';
+import '../../../../global/card/predetermined_workout_menu_specific_day_of_week_card.dart';
+import '../../../../global/dialog/dialog.dart';
 
 class PredeterminedWorkout extends ConsumerWidget {
   const PredeterminedWorkout({super.key});

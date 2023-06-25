@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
-import '../../../../state/timer/timer.dart';
+import '../../../../../state/timer/timer.dart';
 
 class TimerPanel extends ConsumerWidget{
   const TimerPanel({super.key});

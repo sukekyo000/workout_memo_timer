@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/utilities/generate.dart';
-import '../../../../state/workouts_certain_day/workouts_certain_day.dart';
-import '../../add_workout/add_workout.dart';
-import '../../edit_specific_workout_certain_day/edit_specific_workout_certain_day.dart';
+import '../../../../../domain/utilities/generate.dart';
+import '../../../../../state/workouts_certain_day/workouts_certain_day.dart';
+import '../../../add_workout/add_workout.dart';
+import '../../../edit_specific_workout_certain_day/edit_specific_workout_certain_day.dart';
 import '../molecules/specific_menu_certain_day_card.dart';
 
 class TodayWorkout extends ConsumerWidget {

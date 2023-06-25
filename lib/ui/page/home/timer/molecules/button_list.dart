@@ -1,9 +1,8 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../state/timer/timer.dart';
+import '../../../../../state/timer/timer.dart';
 
 class ButtonList extends ConsumerWidget{
   const ButtonList({super.key});

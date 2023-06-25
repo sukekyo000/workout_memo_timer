@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/utilities/const/workout.dart';
-import '../../../../domain/utilities/model/workout_menu_info.dart';
-import '../../../../state/specific_workout_ceratin_day/specific_workout_certain_day.dart';
-import '../../../../state/workouts_certain_day/workouts_certain_day.dart';
-import '../../../global/dialog/dialog.dart';
+import '../../../../../domain/utilities/const/workout.dart';
+import '../../../../../domain/utilities/model/workout_menu_info.dart';
+import '../../../../../state/specific_workout_ceratin_day/specific_workout_certain_day.dart';
+import '../../../../../state/workouts_certain_day/workouts_certain_day.dart';
+import '../../../../global/dialog/dialog.dart';
 
 class SpecificMenuCertainDayCard extends StatelessWidget {
   const SpecificMenuCertainDayCard({super.key, required this.workoutMenuId, required this.workoutMenuInfoList, required this.date});
