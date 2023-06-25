@@ -17,100 +17,102 @@ class PredeterminedWorkout extends ConsumerWidget {
     GlobalDialog globalDialog = GlobalDialog();
     final predeterminedWorkout = ref.watch(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()));
 
-    return Column(
-      children: [
-        Text(
-          '${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニング',
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            '${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニング',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        const SizedBox(height: 20,),
-        predeterminedWorkout.when(
-          data: (predeterminedWorkout){
-            if(predeterminedWorkout.menuCount == 0){
-              return Text(
-                '${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニングはありません',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
-                ),
-              );
-            } else {
-              return Column(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 10,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: predeterminedWorkout.predeterminedMenuInfoMap.keys.map((key) {
-                            return PredeterminedWorkoutMenuSpecificDayOfWeekCard(
-                              workoutMenuId: key,
-                              predeterminedMenuInfoMap: predeterminedWorkout.predeterminedMenuInfoMap,
-                              dayOfWeekId: generateUtilities.generateTodayDayOfWeekId(),
-                              deleteIcon: false,
-                            );
-                          }).toList(),
-                        ),
-                        const SizedBox(width: 10,),
-                      ],
+          const SizedBox(height: 20,),
+          predeterminedWorkout.when(
+            data: (predeterminedWorkout){
+              if(predeterminedWorkout.menuCount == 0){
+                return Text(
+                  '${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニングはありません',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                );
+              } else {
+                return Column(
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 10,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: predeterminedWorkout.predeterminedMenuInfoMap.keys.map((key) {
+                              return PredeterminedWorkoutMenuSpecificDayOfWeekCard(
+                                workoutMenuId: key,
+                                predeterminedMenuInfoMap: predeterminedWorkout.predeterminedMenuInfoMap,
+                                dayOfWeekId: generateUtilities.generateTodayDayOfWeekId(),
+                                deleteIcon: false,
+                              );
+                            }).toList(),
+                          ),
+                          const SizedBox(width: 10,),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20,),
-                  ElevatedButton(
-                    onPressed: () async {
-                      DateTime today = generateUtilities.generateToday();
+                    const SizedBox(height: 20,),
+                    ElevatedButton(
+                      onPressed: () async {
+                        DateTime today = generateUtilities.generateToday();
 
-                      bool checkPredeterminedMenuExistTodayWorkoutMemo = await ref.read(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()).notifier)
-                          .checkPredeterminedMenuListExistTodayWorkoutMemo(predeterminedWorkout.predeterminedMenuInfoMap.keys.toSet(), today);
+                        bool checkPredeterminedMenuExistTodayWorkoutMemo = await ref.read(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()).notifier)
+                            .checkPredeterminedMenuListExistTodayWorkoutMemo(predeterminedWorkout.predeterminedMenuInfoMap.keys.toSet(), today);
 
-                      if (!context.mounted) return;
+                        if (!context.mounted) return;
 
-                      List<String> updatedList = [];
+                        List<String> updatedList = [];
 
-                      if(checkPredeterminedMenuExistTodayWorkoutMemo){
-                        return globalDialog.showAlertDialogBeforeUpdate(context, "既に登録されている同じメニューが更新されますがよろしいですか？", () async {
+                        if(checkPredeterminedMenuExistTodayWorkoutMemo){
+                          return globalDialog.showAlertDialogBeforeUpdate(context, "既に登録されている同じメニューが更新されますがよろしいですか？", () async {
+                            updatedList = await ref.read(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()).notifier)
+                              .addPredeterminedMenuListToWorkoutMenuTable(predeterminedWorkout.predeterminedMenuInfoMap, today);
+                            ref.invalidate(workoutMenuListCertainDayStateNotifierProvider(today));
+                            if (!context.mounted) return;
+                            Navigator.of(context).pop();
+                          });
+                        } else {
                           updatedList = await ref.read(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()).notifier)
-                            .addPredeterminedMenuListToWorkoutMenuTable(predeterminedWorkout.predeterminedMenuInfoMap, today);
+                              .addPredeterminedMenuListToWorkoutMenuTable(predeterminedWorkout.predeterminedMenuInfoMap, today);
                           ref.invalidate(workoutMenuListCertainDayStateNotifierProvider(today));
-                          if (!context.mounted) return;
-                          Navigator.of(context).pop();
-                        });
-                      } else {
-                        updatedList = await ref.read(PredeterminedWorkoutListSpecificDayOfWeekStateNotifierProvider(generateUtilities.generateTodayDayOfWeekId()).notifier)
-                            .addPredeterminedMenuListToWorkoutMenuTable(predeterminedWorkout.predeterminedMenuInfoMap, today);
-                        ref.invalidate(workoutMenuListCertainDayStateNotifierProvider(today));
-                      }
+                        }
 
-                      if (!context.mounted) return;
+                        if (!context.mounted) return;
 
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                            SnackBar(
-                              duration: const Duration(milliseconds: 1500),
-                              behavior: SnackBarBehavior.floating,
-                              content: Text(updatedList.join("\n")),
-                            )
-                        );
-                    },
-                    child: Text(
-                      "${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニングを全て追加する"
-                    )
-                  ),
-                ],
-              );
-            }
-          },
-          error: (error, stackTrace) => Text(error.toString()),
-          loading: () => const CircularProgressIndicator(),
-        ),
-      ],
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(
+                              SnackBar(
+                                duration: const Duration(milliseconds: 1500),
+                                behavior: SnackBarBehavior.floating,
+                                content: Text(updatedList.join("\n")),
+                              )
+                          );
+                      },
+                      child: Text(
+                        "${generateUtilities.generateTodayDayOfWeekName()}に登録されたトレーニングを全て追加する"
+                      )
+                    ),
+                  ],
+                );
+              }
+            },
+            error: (error, stackTrace) => Text(error.toString()),
+            loading: () => const CircularProgressIndicator(),
+          ),
+        ],
+      ),
     );
   }
 }
