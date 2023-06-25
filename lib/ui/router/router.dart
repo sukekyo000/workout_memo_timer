@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_memo_timer/ui/page/add_workout/add_workout.dart';
 import 'package:workout_memo_timer/ui/router/routing_animation.dart';
 
 import '../../domain/utilities/const/week.dart';
@@ -36,6 +37,12 @@ final GoRouter router = GoRouter(
           dayOfWeekId: dayOfWeekId,
           dayOfWeekName: dayOfWeekName,
         ));
+      },
+    ),
+    GoRoute(
+      path: '/add_workout',
+      pageBuilder: (context, state){
+        return routingAnimation.transitionDownToUp(const AddWorkoutPage());
       },
     ),
   ],
