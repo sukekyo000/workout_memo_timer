@@ -96,7 +96,7 @@ class TodayWorkout extends ConsumerWidget {
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) {
-                      return const AddWorkout();
+                      return const AddWorkoutPage();
                     },
                     transitionsBuilder: (context, animation, secondaryAnimation, child) {
                       const Offset begin = Offset(0.0, 1.0); // 下から上

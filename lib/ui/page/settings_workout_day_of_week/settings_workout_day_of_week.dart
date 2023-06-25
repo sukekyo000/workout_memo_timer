@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'organisms/predetermined_menu_specific_day_of_week.dart';
 import 'organisms/set_workout_menu_specific_day_of_week.dart';
 
-class SettingsWorkoutDayOfWeek extends StatelessWidget {
-  const SettingsWorkoutDayOfWeek({super.key, required this.dayOfWeekName, required this.dayOfWeekId});
+class SettingsWorkoutDayOfWeekPage extends StatelessWidget {
+  const SettingsWorkoutDayOfWeekPage({super.key, required this.dayOfWeekName, required this.dayOfWeekId});
   final String dayOfWeekName;
   final int dayOfWeekId;
 

@@ -7,8 +7,8 @@ import '../../../domain/utilities/generate.dart';
 import '../../global/form/part_of_body_title.dart';
 import 'organisms/menu_form_tile_for_memo.dart';
 
-class AddWorkout extends StatelessWidget {
-  const AddWorkout({Key? key}) : super(key: key);
+class AddWorkoutPage extends StatelessWidget {
+  const AddWorkoutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

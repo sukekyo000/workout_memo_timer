@@ -5,8 +5,8 @@ import 'organisms/history_by_calendar.dart';
 import 'organisms/predetermined_workout.dart';
 import 'organisms/today_workout.dart';
 
-class WorkoutMemo extends StatelessWidget {
-  const WorkoutMemo({super.key});
+class WorkoutMemoPage extends StatelessWidget {
+  const WorkoutMemoPage({super.key});
 
   @override
   Widget build(BuildContext context) {

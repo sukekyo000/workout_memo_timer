@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'molecules/button_list.dart';
 import 'molecules/timer_panel.dart';
 
-class Timer extends StatelessWidget{
-  const Timer({super.key});
+class TimerPage extends StatelessWidget{
+  const TimerPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -23,7 +23,7 @@ class CommonDrawer extends StatelessWidget{
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    return const SettingsWeekList();
+                    return const SettingsWeekListPage();
                   },
                   transitionsBuilder: (context, animation, secondaryAnimation, child) {
                     const Offset begin = Offset(0.0, 1.0); // 下から上

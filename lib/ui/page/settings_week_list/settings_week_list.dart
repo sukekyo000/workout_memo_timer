@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../domain/utilities/const/week.dart';
 import '../settings_workout_day_of_week/settings_workout_day_of_week.dart';
 
-class SettingsWeekList extends StatelessWidget {
-  const SettingsWeekList({super.key});
+class SettingsWeekListPage extends StatelessWidget {
+  const SettingsWeekListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class SettingsWeekList extends StatelessWidget {
                   Navigator.of(context).push(
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) {
-                        return SettingsWorkoutDayOfWeek(dayOfWeekName: "${weekMapEntry.value}曜日", dayOfWeekId: weekMapEntry.key,);
+                        return SettingsWorkoutDayOfWeekPage(dayOfWeekName: "${weekMapEntry.value}曜日", dayOfWeekId: weekMapEntry.key,);
                       },
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         const Offset begin = Offset(1.0, 0.0); // 左から右

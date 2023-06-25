@@ -49,8 +49,8 @@ class HomePage extends HookWidget {
     final TabController tabController = useTabController(initialLength: 2);
 
     List<Widget> screens = [
-      const WorkoutMemo(),
-      const Timer(),
+      const WorkoutMemoPage(),
+      const TimerPage(),
     ];
 
     final tab = [
