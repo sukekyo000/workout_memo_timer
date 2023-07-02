@@ -1,16 +1,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../../../domain/utilities/generate.dart';
 import '../../../../../state/calendar/calendar.dart';
 
-class HistoryByCalendar extends HookWidget {
+class HistoryByCalendar extends HookConsumerWidget {
   const HistoryByCalendar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ValueNotifier<DateTime?> selectedDayState = useState(null);
     ValueNotifier<DateTime> focusDayState = useState(DateTime.now());
 
@@ -53,7 +55,16 @@ class HistoryByCalendar extends HookWidget {
           selectedDayState.value = selectedDay;
           focusDayState.value = focusedDay;
         },
-        eventLoader: <String>(day) {
+        eventLoader: (day) {
+          GenerateUtilities generateUtilities = GenerateUtilities();
+          final date = generateUtilities.generateSpecificDay(2023, 7, 5);
+          final date2 = generateUtilities.generateSpecificDay(2023, 7, 7);
+          if(day.toIso8601String().replaceAll("T", " ").replaceAll("Z", "") == date.toString()) {
+            return ['1'];
+          }
+          if(day.toIso8601String().replaceAll("T", " ").replaceAll("Z", "") == date2.toString()) {
+            return ['1'];
+          }
           return [];
         },
       ),

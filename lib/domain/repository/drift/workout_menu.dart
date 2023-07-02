@@ -21,6 +21,13 @@ class WorkoutMenuRepository extends DatabaseAccessor<MyDatabase> with _$WorkoutM
     return await workoutMenusCertainDayInstance.get();
   }
 
+  /// get specific days
+  Future<List<DateTime>> getWorkoutSpecificDays() async {
+    final workoutMenusCertainDayInstance = select(workoutMenus);
+    final days = await workoutMenusCertainDayInstance.map((e) => e.date).get();
+    return days.toSet().toList();
+  }
+
   /// add database workout menu
   Future<void> addWorkoutMenu(DateTime date, int menuId, int set, double weight, int rep, bool assistant) {
     WorkoutMenusCompanion workoutMenusCompanion = WorkoutMenusCompanion(
